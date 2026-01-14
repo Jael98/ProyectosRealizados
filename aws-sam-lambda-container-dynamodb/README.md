@@ -53,23 +53,22 @@ Construida con **AWS SAM CLI**, **AWS Lambda** (usando container image con Pytho
 
 ## Instalación y pruebas locales
 
-Markdown## Instalación y pruebas locales
-
-Sigue estos pasos para tener el proyecto corriendo en tu máquina local:
-
-1. **Clonar el repositorio**
-
+1. Clonar el repositorio
    ```bash
    git clone https://github.com/tu-usuario/nombre-del-repo.git
    cd nombre-del-repo
+2.Construir  la aplicacion
+  sam build
+3.Iniciar entorno local (con hot-reload)
+  sam local start-api
+4.Probar endpoints (ejemplos con curl):
+  # Listar todas
+curl http://127.0.0.1:3000/hello
 
-Construir la aplicaciónBashsam build
-Iniciar el entorno local
-(incluye hot-reload automático para desarrollo rápido)Bashsam local start-apiUna vez iniciado, la API estará disponible en:
-http://127.0.0.1:3000/hello
-Probar los endpoints (ejemplos con curl)Bash# 4.1 Listar todas las baterías
-curl http://127.0.0.1:3000/helloBash# 4.2 Obtener una batería específica por ID
-curl http://127.0.0.1:3000/hello/bat-001Bash# 4.3 Crear una nueva batería (POST con body JSON)
+# Obtener una por ID
+curl http://127.0.0.1:3000/hello/bat-001
+
+# Crear una batería (ejemplo)
 curl -X POST http://127.0.0.1:3000/hello \
   -H "Content-Type: application/json" \
   -d '{
@@ -80,8 +79,7 @@ curl -X POST http://127.0.0.1:3000/hello \
     "capacity_kwh": "13.5",
     "power_output": "5",
     "type_device": "home"
-  }'Bash# 4.4 Eliminar una batería por ID
-curl -X DELETE http://127.0.0.1:3000/hello/bat-001
+  }'
 
 ## Despliegue en AWS
 1. Construir
